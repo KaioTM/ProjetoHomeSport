@@ -34,20 +34,20 @@ public class UsuarioDAO {
     }
         
     
-    public void create(String nome,String sobreNome,String localMoradia,String esporteFavorito,String receberHospede,String quantidadeHospede,String login,String senha){
+    public void create(Usuario usuario){
         
         PreparedStatement sql;
         try {
             sql = ConnectionFactory.getConnection().prepareStatement(
                     "INSERT INTO USUARIO (NOME,SOBRENOME,LOCALMORADIA,ESPORTEFAVORITO,RECEBERHOSPEDE,QUANTIDADEHOSPEDE,LOGIN,SENHA) values(?,?,?,?,?,?,?,?)");
-            sql.setString(1, nome);
-            sql.setString(2, sobreNome);
-            sql.setString(3, localMoradia);
-            sql.setString(4, esporteFavorito);
-            sql.setString(5, receberHospede);
-            sql.setString(6, quantidadeHospede);
-            sql.setString(7, login);
-            sql.setString(8, senha);
+            sql.setString(1, usuario.getNome());
+            sql.setString(2, usuario.getSobrenome());
+            sql.setString(3, usuario.getLocalMoradia());
+            sql.setString(4, usuario.getEsporteFavorito());
+            sql.setString(5, usuario.getReceberHospede());
+            sql.setString(6, Integer.toString(usuario.getQuantidadeHospede()));
+            sql.setString(7, usuario.getLogin());
+            sql.setString(8, usuario.getSenha());
             
             sql.execute();
         } catch (SQLException ex) {

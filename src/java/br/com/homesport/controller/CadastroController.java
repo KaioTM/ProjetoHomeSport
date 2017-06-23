@@ -6,13 +6,11 @@
 package br.com.homesport.controller;
 
 import br.com.homesport.dao.UsuarioDAO;
+import br.com.homesport.model.Usuario;
 import br.com.homesport.session.HibernateSessionFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,36 +27,38 @@ public class CadastroController {
      *
      * @param request servlet request
      * @param response servlet response
+     * @return 
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     @RequestMapping("/autocadastro")
-    protected String processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        Session session = HibernateSessionFactory.getSession();
-        try (PrintWriter out = response.getWriter()) {
-        session.beginTransaction();
-        if (request.getParameter("receberHospede").equals("S")){
-            UsuarioDAO cadastroUsuario = new UsuarioDAO();
-            cadastroUsuario.create(request.getParameter("nome"), request.getParameter("sobrenome"), request.getParameter("localMoradia"), request.getParameter("esporteFavorito"), request.getParameter("receberHospede"), request.getParameter("quantidadeHospede"), request.getParameter("login"), request.getParameter("senha"));
-//            Usuario usuario = new Usuario(request.getParameter("id"),request.getParameter("nome"), request.getParameter("sobrenome"),request.getParameter("localMoradia"),request.getParameter("esporteFavorito"),request.getParameter("receberHospede"),Integer.parseInt(request.getParameter("quantidadeHospede")));
-//            request.setAttribute("usuario", usuario);
-//            session.save(usuario);
-
-        }else{
-            UsuarioDAO cadastroUsuario = new UsuarioDAO();
-            cadastroUsuario.create(request.getParameter("nome"), request.getParameter("sobrenome"), request.getParameter("localMoradia"), request.getParameter("esporteFavorito"), request.getParameter("receberHospede"), request.getParameter("login"), request.getParameter("senha"));
-        }
-        
-        
-        session.getTransaction().commit();
-        session.close();
+    protected String adiciona(Usuario usuario){
+        UsuarioDAO cadastroUsuario = new UsuarioDAO();
+        System.out.println("Usuario adicionado:" + usuario);
+        cadastroUsuario.create(usuario);
+//        Session session = HibernateSessionFactory.getSession();
+//        try (PrintWriter out = response.getWriter()) {
+//        session.beginTransaction();
+//        
+//        if (request.getParameter("receberHospede").equals("S")){
+//            UsuarioDAO cadastroUsuario = new UsuarioDAO();
+//            cadastroUsuario.create(request.getParameter("nome"), request.getParameter("sobrenome"), request.getParameter("localMoradia"), request.getParameter("esporteFavorito"), request.getParameter("receberHospede"), request.getParameter("quantidadeHospede"), request.getParameter("login"), request.getParameter("senha"));
+////            Usuario usuario = new Usuario(request.getParameter("id"),request.getParameter("nome"), request.getParameter("sobrenome"),request.getParameter("localMoradia"),request.getParameter("esporteFavorito"),request.getParameter("receberHospede"),Integer.parseInt(request.getParameter("quantidadeHospede")));
+////            request.setAttribute("usuario", usuario);
+////            session.save(usuario);
+//
+//        }else{
+//            UsuarioDAO cadastroUsuario = new UsuarioDAO();
+//            cadastroUsuario.create(request.getParameter("nome"), request.getParameter("sobrenome"), request.getParameter("localMoradia"), request.getParameter("esporteFavorito"), request.getParameter("receberHospede"), request.getParameter("login"), request.getParameter("senha"));
+//        }
+//        
+//        
+//        session.getTransaction().commit();
+//        session.close();
 
         return "ok";
         //view.forward(request, response);
         }
     }
 
-}
 
