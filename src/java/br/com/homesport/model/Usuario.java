@@ -40,7 +40,11 @@ import javax.persistence.Table;
     private String login;
     @Column (name = "SENHA")
     private String senha;
+
+    public Usuario() {
+    }
     
+
     
     public Usuario(int id, String nome, String sobrenome, String localMoradia, String esporteFavorito, String receberHospede, String login, String senha) {
         this.id = id;

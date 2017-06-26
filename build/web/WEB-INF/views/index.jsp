@@ -70,7 +70,6 @@
     </head>
 
     <body>
-        AAAAAAAA
         <header role="banner" id="fh5co-header">
             <div class="container">
                 <!-- <div class="row"> -->
@@ -125,7 +124,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Cadastre-se</h4> </div>
                     <div class="modal-body"> 
-                        <form class="navbar-form navbar-left" action="/autocadastro" method="post">
+                        <form class="navbar-form navbar-left" action="autocadastro" method="post">
                             <div class="form-group">
                                 Nome:<br/>
                                 <input type="text" name="nome" class="form-control" placeholder="Digite"><br/>

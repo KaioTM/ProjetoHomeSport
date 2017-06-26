@@ -55,33 +55,33 @@ public class UsuarioDAO {
         }
     }
     
-    public void create(String nome,String sobreNome,String localMoradia,String esporteFavorito,String receberHospede,String login,String senha){
-        
-        PreparedStatement sql;
-        try {
-            sql = ConnectionFactory.getConnection().prepareStatement(
-                    "INSERT INTO USUARIO (NOME,SOBRENOME,LOCALMORADIA,ESPORTEFAVORITO,RECEBERHOSPEDE,LOGIN,SENHA) values(?,?,?,?,?,?,?)");
-            sql.setString(1, nome);
-            sql.setString(2, sobreNome);
-            sql.setString(3, localMoradia);
-            sql.setString(4, esporteFavorito);
-            sql.setString(5, receberHospede);
-            sql.setString(6, login);
-            sql.setString(7, senha);
-            sql.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }    
+//    public void create(String nome,String sobreNome,String localMoradia,String esporteFavorito,String receberHospede,String login,String senha){
+//        
+//        PreparedStatement sql;
+//        try {
+//            sql = ConnectionFactory.getConnection().prepareStatement(
+//                    "INSERT INTO USUARIO (NOME,SOBRENOME,LOCALMORADIA,ESPORTEFAVORITO,RECEBERHOSPEDE,LOGIN,SENHA) values(?,?,?,?,?,?,?)");
+//            sql.setString(1, nome);
+//            sql.setString(2, sobreNome);
+//            sql.setString(3, localMoradia);
+//            sql.setString(4, esporteFavorito);
+//            sql.setString(5, receberHospede);
+//            sql.setString(6, login);
+//            sql.setString(7, senha);
+//            sql.execute();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }    
     
-    public Usuario autenticacao (String login, String senha){
+    public Usuario autenticacao (Usuario usuario){
         Usuario usuarioRetorno = null;
         PreparedStatement sql;
         try {
             sql = ConnectionFactory.getConnection().prepareStatement(
                     "SELECT * FROM USUARIO WHERE LOGIN=? and SENHA=?");
-            sql.setString(1, login);
-            sql.setString(2, senha);
+            sql.setString(1, usuario.getLogin());
+            sql.setString(2, usuario.getSenha());
             ResultSet resultado = sql.executeQuery();
             if(resultado.next()){
                 usuarioRetorno = new Usuario(resultado.getInt(1),resultado.getString(2),resultado.getString(3),resultado.getString(4),resultado.getString(5),resultado.getString(6),resultado.getInt(7),resultado.getString(8),resultado.getString(9));
@@ -91,6 +91,24 @@ public class UsuarioDAO {
         }
         return usuarioRetorno;
     }
+    
+//    public Usuario autenticacao (String login, String senha){
+//        Usuario usuarioRetorno = null;
+//        PreparedStatement sql;
+//        try {
+//            sql = ConnectionFactory.getConnection().prepareStatement(
+//                    "SELECT * FROM USUARIO WHERE LOGIN=? and SENHA=?");
+//            sql.setString(1, login);
+//            sql.setString(2, senha);
+//            ResultSet resultado = sql.executeQuery();
+//            if(resultado.next()){
+//                usuarioRetorno = new Usuario(resultado.getInt(1),resultado.getString(2),resultado.getString(3),resultado.getString(4),resultado.getString(5),resultado.getString(6),resultado.getInt(7),resultado.getString(8),resultado.getString(9));
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return usuarioRetorno;
+//    }
 
      public List<Usuario> consultarTodos() throws SQLException {
         EntityManager em = getEm();

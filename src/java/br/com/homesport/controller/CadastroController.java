@@ -7,9 +7,9 @@ package br.com.homesport.controller;
 
 import br.com.homesport.dao.UsuarioDAO;
 import br.com.homesport.model.Usuario;
-import br.com.homesport.session.HibernateSessionFactory;
+
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import org.hibernate.Session;
 import org.springframework.stereotype.Controller;

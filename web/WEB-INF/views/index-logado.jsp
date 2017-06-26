@@ -85,10 +85,9 @@
                             <li><a href="#" data-nav-section="about"><span>About</span></a></li>
                             <li><a href="home.jsp"><span>Contact</span></a></li>
                             <li>
-                                <button type="button" class="btnHeader btn btn-primary" data-toggle="modal" data-target="#signinModal"><span>Sign in</span></button>
-                            </li>
-                            <li>
-                                <button type="button" class="btnHeader btn btn-secondary" data-toggle="modal" data-target="#signupModal"><span>Sign up</span></button>
+                                <div>
+                                    <div> ${usuarioLogado.nome} ${usuarioLogado.sobrenome}</div>
+                                </div>
                             </li>
                         </ul>
                     </div>
