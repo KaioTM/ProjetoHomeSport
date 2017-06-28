@@ -5,19 +5,29 @@
  */
 package br.com.homesport.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-/**
- *
- * @author KaioT
- */
-public class Evento {
+@Entity
+@Table(name = "EVENTO")
+public class Evento implements Serializable {
+    @Id
+    @Column (name= "IDEVENTO")
     private int idEvento;
+    @Column (name= "IDRESPONSAVEL")
     private int idResponsavel;
     private ArrayList<Usuario> participantes = new ArrayList();
+    @Column (name= "LOCALSAIDA")
     private String localSaida;
+    @Column (name= "DATASAIDA")
     private String dataSaida;
+    @Column (name= "DURACAO")
     private String duracao;
+    @Column (name= "CUSTOTOTAL")
     private int custoTotal;
 
     public int getIdEvento() {
@@ -75,6 +85,5 @@ public class Evento {
     public void setCustoTotal(int custoTotal) {
         this.custoTotal = custoTotal;
     }
-    
-    
+
 }
